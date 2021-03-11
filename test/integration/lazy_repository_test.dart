@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:hive/hive.dart';
 import 'package:hive_repo/hive_repo.dart';
+import 'package:quiver/core.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -30,17 +31,17 @@ void main() {
 
       await underTest.put('user_1', item);
 
-      _FakeUser2 value;
+      Optional<_FakeUser2> record;
 
       expect(underTest.count(), 1);
-      value = await underTest.one('user_1');
-      expect(value.name, 'Joe');
+      record = await underTest.find('user_1');
+      expect(record.value.name, 'Joe');
 
       await underTest.put('user_1', _FakeUser2('Boe'));
 
       expect(underTest.count(), 1);
-      value = await underTest.one('user_1');
-      expect(value.name, 'Boe');
+      record = await underTest.find('user_1');
+      expect(record.value.name, 'Boe');
     });
 
     test('Should count, stream and list items', () async {

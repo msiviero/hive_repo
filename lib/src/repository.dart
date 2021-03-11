@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:quiver/core.dart';
 
 const int maxInt = 9007199254740992;
 
@@ -15,8 +16,8 @@ class Repository<T> {
     return _box.add(item);
   }
 
-  T one(String key) {
-    return _box.get(key);
+  Optional<T> find(String key) {
+    return Optional.fromNullable(_box.get(key));
   }
 
   Future<void> delete(String key) {
@@ -26,7 +27,7 @@ class Repository<T> {
   Stream<T> stream({int limit = maxInt}) async* {
     var i = 0;
     for (final key in _box.keys) {
-      yield _box.get(key);
+      yield _box.get(key)!;
       i++;
       if (i >= limit) {
         break;
@@ -52,8 +53,8 @@ class LazyRepository<T> {
     return _box.add(item);
   }
 
-  Future<T> one(String key) {
-    return _box.get(key);
+  Future<Optional<T>> find(String key) async {
+    return Optional.fromNullable(await _box.get(key));
   }
 
   Future<void> delete(String key) {
@@ -63,7 +64,8 @@ class LazyRepository<T> {
   Stream<T> stream({int limit = maxInt}) async* {
     var i = 0;
     for (final key in _box.keys) {
-      yield await _box.get(key);
+      final it = await _box.get(key);
+      if (it != null) yield it;
       i++;
       if (i >= limit) {
         break;

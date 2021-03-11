@@ -1,22 +1,19 @@
-A library for Dart developers.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Repository functionalities on top of hive
 
 ## Usage
 
-A simple usage example:
+Just pass a box to the constructor and use the Repository and LazyRepository methods
 
 ```dart
 import 'package:hive_repo/hive_repo.dart';
 
 main() {
-  var awesome = new Awesome();
+
+  Hive.init(Directory.systemTemp.path + '/test');
+  Hive.registerAdapter(UserAdapter());
+
+  final repository = Repository<User>(Hive.box<User>('_test_user'));
+
+  final List<User> users = await repository.list();
 }
 ```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
