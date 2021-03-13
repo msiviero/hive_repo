@@ -3,7 +3,7 @@ import 'package:quiver/core.dart';
 
 const int maxInt = 9007199254740992;
 
-/// A repository of type T
+/// A repository of type T backed by a standard hive box
 class Repository<T> {
   final Box<T> _box;
 
@@ -48,6 +48,7 @@ class Repository<T> {
   int count() => _box.keys.length;
 }
 
+/// A repository of type T backed by a lazy hive box
 class LazyRepository<T> {
   final LazyBox<T> _box;
 
