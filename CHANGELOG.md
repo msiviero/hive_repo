@@ -4,4 +4,5 @@
 
 ## 0.1.0+1
 
-- Pub.dev score suggestions implementation
+- Added docs
+- Added package description
