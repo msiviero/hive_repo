@@ -10,22 +10,22 @@ class Repository<T> {
   Repository(this._box);
 
   /// Puts an [item] in the box at the given [key]
-  Future<void> put(key, T item) {
+  Future<void> put(dynamic key, T item) {
     return _box.put(key, item);
   }
 
-  /// Add an [item] to the box. In this case, the key will be computed
-  Future<void> add(T item) {
+  /// Add an [item] to the box. In this case, the key will be auto-incremented and returned
+  Future<int> add(T item) {
     return _box.add(item);
   }
 
   /// Returns an optional wrapping a single item, found (or not) by [key]
-  Optional<T> find(String key) {
+  Optional<T> find(dynamic key) {
     return Optional.fromNullable(_box.get(key));
   }
 
   /// Deletes an item at the given [key]
-  Future<void> delete(String key) {
+  Future<void> delete(dynamic key) {
     return _box.delete(key);
   }
 
@@ -55,22 +55,22 @@ class LazyRepository<T> {
   LazyRepository(this._box);
 
   /// Puts an [item] in the box at the given [key]
-  Future<void> put(key, T item) {
+  Future<void> put(dynamic key, T item) {
     return _box.put(key, item);
   }
 
   /// Add an [item] to the box. In this case, the key will be computed
-  Future<void> add(T item) {
+  Future<int> add(T item) {
     return _box.add(item);
   }
 
   /// Returns an optional wrapping a single item, found (or not) by [key]
-  Future<Optional<T>> find(String key) async {
+  Future<Optional<T>> find(dynamic key) async {
     return Optional.fromNullable(await _box.get(key));
   }
 
   /// Deletes an item at the given [key]
-  Future<void> delete(String key) {
+  Future<void> delete(dynamic key) {
     return _box.delete(key);
   }
 
