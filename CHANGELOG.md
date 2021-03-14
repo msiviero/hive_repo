@@ -10,3 +10,7 @@
 ## 0.1.0+3
 
 - Fixed some types
+
+## 0.2.0
+
+- Support for generated keys
