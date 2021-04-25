@@ -8,11 +8,11 @@ void main() async {
   Hive.registerAdapter(UserAdapter());
 
   final repository = Repository<User>(Hive.box<User>('_test_user'));
-  final users = await repository.list();
+  final users = await repository.stream().toList();
 
   print(users);
 
-  /// [User1, User2, etc...]
+  // [User1, User2, etc...]
 }
 
 class User {

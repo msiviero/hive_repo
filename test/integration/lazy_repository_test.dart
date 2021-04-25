@@ -68,29 +68,6 @@ void main() {
         ]),
       );
     });
-
-    test('Should limit stream', () async {
-      final underTest = LazyRepository<_FakeUser2>(
-          Hive.lazyBox<_FakeUser2>('_test_user_lazy'));
-
-      await underTest.add(_FakeUser2('Mick'));
-      await underTest.add(_FakeUser2('Keith'));
-      await underTest.add(_FakeUser2('Ronnie'));
-      await underTest.add(_FakeUser2('Charlie'));
-
-      expect(underTest.count(), 4);
-
-      final stream = underTest.stream(limit: 2);
-
-      await expectLater(
-        stream,
-        emitsInOrder([
-          emits(Entry(0, _FakeUser2('Mick'))),
-          emits(Entry(1, _FakeUser2('Keith'))),
-          emitsDone,
-        ]),
-      );
-    });
   });
 }
 

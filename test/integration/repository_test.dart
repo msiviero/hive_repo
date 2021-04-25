@@ -67,29 +67,6 @@ void main() {
         ]),
       );
     });
-
-    test('Should limit stream', () async {
-      final underTest =
-          Repository<_FakeUser>(Hive.box<_FakeUser>('_test_user'));
-
-      await underTest.add(_FakeUser('Mick'));
-      await underTest.add(_FakeUser('Keith'));
-      await underTest.add(_FakeUser('Ronnie'));
-      await underTest.add(_FakeUser('Charlie'));
-
-      expect(underTest.count(), 4);
-
-      final stream = underTest.stream(limit: 2);
-
-      await expectLater(
-        stream,
-        emitsInOrder([
-          emits(Entry(0, _FakeUser('Mick'))),
-          emits(Entry(1, _FakeUser('Keith'))),
-          emitsDone,
-        ]),
-      );
-    });
   });
 }
 

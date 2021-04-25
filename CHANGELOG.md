@@ -14,3 +14,7 @@
 ## 0.2.0
 
 - Support for generated keys
+
+## 0.3.0
+
+- Refactoring of apis removed unused
