@@ -47,10 +47,10 @@ void main() {
       final underTest =
           Repository<_FakeUser>(Hive.box<_FakeUser>('_test_user'));
 
-      await underTest.add(_FakeUser('Mick'));
-      await underTest.add(_FakeUser('Keith'));
-      await underTest.add(_FakeUser('Ronnie'));
-      await underTest.add(_FakeUser('Charlie'));
+      await underTest.put(0, _FakeUser('Mick'));
+      await underTest.put(1, _FakeUser('Keith'));
+      await underTest.put(2, _FakeUser('Ronnie'));
+      await underTest.put(3, _FakeUser('Charlie'));
 
       expect(underTest.count(), 4);
 

@@ -3,17 +3,16 @@ import 'package:quiver/core.dart';
 
 class RepositoryBase<T> {
   final BoxBase<T> box;
+  final String keyNamespace;
 
-  RepositoryBase(this.box);
+  RepositoryBase(
+    this.box, {
+    this.keyNamespace = 'msiviero.dev',
+  });
 
   /// Puts an [item] in the box at the given [key]
   Future<void> put(dynamic key, T item) {
     return box.put(key, item);
-  }
-
-  /// Add an [item] to the box. In this case, the key will be auto-incremented and returned
-  Future<int> add(T item) {
-    return box.add(item);
   }
 
   /// Deletes an item at the given [key]

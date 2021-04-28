@@ -20,6 +20,6 @@
 - Refactoring of apis removed unused
 
 
-## 1.3.0
+## 1.4.0
 
-- Removed returning entry instead of real record
+- Removed add method

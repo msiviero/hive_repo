@@ -48,10 +48,10 @@ void main() {
       final underTest = LazyRepository<_FakeUser2>(
           Hive.lazyBox<_FakeUser2>('_test_user_lazy'));
 
-      await underTest.add(_FakeUser2('Mick'));
-      await underTest.add(_FakeUser2('Keith'));
-      await underTest.add(_FakeUser2('Ronnie'));
-      await underTest.add(_FakeUser2('Charlie'));
+      await underTest.put(0, _FakeUser2('Mick'));
+      await underTest.put(1, _FakeUser2('Keith'));
+      await underTest.put(2, _FakeUser2('Ronnie'));
+      await underTest.put(3, _FakeUser2('Charlie'));
 
       expect(underTest.count(), 4);
 
