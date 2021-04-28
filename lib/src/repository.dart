@@ -1,26 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:quiver/core.dart';
 
-const int maxInt = 9007199254740992;
-
-class Entry<T> {
-  final dynamic key;
-  final T value;
-
-  Entry(this.key, this.value);
-
-  @override
-  String toString() {
-    return 'Entry[key=$key, value=$value]';
-  }
-
-  @override
-  bool operator ==(o) => o is Entry && key == o.key && value == o.value;
-
-  @override
-  int get hashCode => hash2(key.hashCode, value.hashCode);
-}
-
 class RepositoryBase<T> {
   final BoxBase<T> box;
 
@@ -58,10 +38,10 @@ class Repository<T> extends RepositoryBase<T> {
   }
 
   /// Returns a stream of  values
-  Stream<Entry<T>> stream() async* {
+  Stream<T> stream() async* {
     for (final key in box.keys) {
       final it = box.get(key);
-      if (it != null) yield Entry(key, it);
+      if (it != null) yield it;
     }
   }
 }
@@ -79,10 +59,10 @@ class LazyRepository<T> extends RepositoryBase<T> {
   }
 
   /// Returns a stream of entries
-  Stream<Entry<T>> stream() async* {
+  Stream<T> stream() async* {
     for (final key in box.keys) {
       final it = await box.get(key);
-      if (it != null) yield Entry(key, it);
+      if (it != null) yield it;
     }
   }
 }

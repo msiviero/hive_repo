@@ -59,10 +59,10 @@ void main() {
       await expectLater(
         stream,
         emitsInOrder([
-          emits(Entry(0, _FakeUser('Mick'))),
-          emits(Entry(1, _FakeUser('Keith'))),
-          emits(Entry(2, _FakeUser('Ronnie'))),
-          emits(Entry(3, _FakeUser('Charlie'))),
+          emits(_FakeUser('Mick')),
+          emits(_FakeUser('Keith')),
+          emits(_FakeUser('Ronnie')),
+          emits(_FakeUser('Charlie')),
           emitsDone,
         ]),
       );

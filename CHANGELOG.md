@@ -18,3 +18,8 @@
 ## 0.3.0
 
 - Refactoring of apis removed unused
+
+
+## 1.3.0
+
+- Removed returning entry instead of real record
